@@ -1,0 +1,14 @@
+{
+  "name": "exploded",
+  "prompt": "Premium vertical product film featuring the exact {vehicle} shown in the reference photos: {look}. Keep the vehicle's design, proportions, badges and wheels identical to the references.\nOne continuous shot in a clean, dark studio with a glossy floor and soft overhead light. The camera stays wide and steady the whole time with a very slow orbit; the whole vehicle and every part stays inside the frame.\n0-2.5s: the complete vehicle sits still in a front three-quarter view, light sweeping across the paint.\n2.5-5s: the vehicle smoothly separates into an exploded view, like a technical diagram come to life: body panels, doors, hood, tailgate, glass, wheels, seats, headlights and tail lights glide outward and float in mid air, evenly spaced around the chassis, each part clean and intact.\n5-7s: the exploded parts hang weightless and rotate very slightly, light glinting on each piece.\n7-10s: every part glides back in and clicks into place in sequence, the vehicle whole again exactly as in the references, lights switch on, final hero pose.\nPhotoreal, precise, elegant, smooth mechanical motion, no chaos, no damage, no debris, no sparks. No people, no on-screen text, no labels, no captions, no subtitles, no logos other than those on the vehicle, no license plate text. Audio: soft mechanical whirs and clicks as parts move, a satisfying low thunk when it reassembles, minimal modern ambient music, no voices.",
+  "captions": [
+    {"lines": ["Look a little closer."], "start": 0.3, "end": 2.1},
+    {"lines": ["Every piece in its place."], "start": 2.9, "end": 4.6},
+    {"lines": ["All of it built", "around your people."], "start": 5.2, "end": 7.0}
+  ],
+  "end_card": {
+    "start": 7.6,
+    "kicker": "THE {VEHICLE}",
+    "headline": ["See it all together", "in person."]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "sky-drop",
+  "prompt": "High-energy cinematic vertical car reveal featuring the exact {vehicle} shown in the reference photos: {look}. Keep the vehicle's design, proportions, badges and wheels identical to the references.\nShot 1 (0-2.5s): wide low-angle shot of an empty sunlit salt flat under a huge dramatic sky, nothing in frame. A small shape appears high in the clouds and falls fast: it is the vehicle, dropping straight down, level and right way up, a streak of air around it.\nShot 2 (2.5-5s): the vehicle slams down on all four wheels in the centre of the frame, suspension compressing and rebounding, a circular shockwave of dust and salt blasting outward, small stones lifting, camera shaking slightly on impact. The whole vehicle stays fully visible. It is undamaged and pristine.\nShot 3 (5-7.5s): dust clears in slow motion, headlights and daytime running lights switch on, fast low orbit around the front three-quarter view, sunlight flaring off the paint.\nShot 4 (7.5-10s): wide hero shot, the vehicle launches forward and drives toward camera then past it, dust trailing, the full vehicle visible with space around it.\nPhotoreal, crisp, high contrast, punchy colour, dynamic camera. No people, no on-screen text, no captions, no subtitles, no logos other than those on the vehicle, no license plate text. Audio: rising whoosh, a deep heavy impact boom on landing, then a driving cinematic beat, no voices.",
+  "captions": [
+    {"lines": ["Heads up."], "start": 0.3, "end": 2.1},
+    {"lines": ["It just landed."], "start": 2.9, "end": 4.6},
+    {"lines": ["The {vehicle}."], "start": 5.2, "end": 7.0}
+  ],
+  "end_card": {
+    "start": 7.5,
+    "kicker": "THE {VEHICLE}",
+    "headline": ["Now on the lot.", "Come take a look."]
+  }
+}
