@@ -5,15 +5,19 @@ A Claude skill that turns a vehicle on the Winn Kia of Fremont lot into three br
 
 | Style | What happens | Tone |
 |---|---|---|
-| `heartfelt` | Golden-hour overlook, a parent and child walk to the car, cabin, coastal drive-off | Warm, family |
-| `sky-drop` | The car falls from the sky onto a salt flat, lands in a dust shockwave, drives off | Punchy, fun |
-| `exploded` | Studio shot: the car separates into floating parts, then snaps back together | Premium, precise |
+| `heartfelt` | A child sprints through the grass to the car, parent catches up, cabin, coastal drive-off | Warm, family |
+| `sky-drop` | The car is already falling in frame one, slams onto a salt flat in a dust shockwave, drives off | Punchy, fun |
+| `exploded` | Studio shot: the car snaps apart into floating parts, then clicks back together | Premium, precise |
 
 For each car, the skill:
 
 1. Pulls the real listing photos and details (model, colour, VIN, stock number) from winnkiaoffremont.com.
 2. Generates each clip with Higgsfield (Seedance 2.5), using the photos as references so the car matches.
-3. Burns in the "WINN KIA / OF FREMONT" wordmark, three captions, and an end card with the dealership address.
+3. Writes a hook and captions for that specific car, so no two posts read the same.
+4. Adds the Winn Auto Group logo, the Winn Kia of Fremont logo, a music bed for the style, and an
+   end card with the dealership address.
+
+Every reel opens on its most dramatic moment with a large hook line on screen from the first frame.
 
 ## Requirements
 
@@ -42,12 +46,22 @@ higgsfield workspace set <workspace_id>
 **2. Install the skill**
 
 ```bash
-git clone https://github.com/yuevan10284/winn-kia-car-reels.git
+git clone https://github.com/yuevan10284/winn-kia-car-reels.git ~/winn-kia-car-reels
 mkdir -p ~/.claude/skills
-cp -R winn-kia-car-reels/winn-kia-car-reels ~/.claude/skills/
+ln -s ~/winn-kia-car-reels/winn-kia-car-reels ~/.claude/skills/winn-kia-car-reels
 ```
 
+This links the skill instead of copying it, so updating later is one command.
+
 **3. Restart Claude Code** so it picks up the new skill.
+
+## Updating
+
+The skill does not update itself. To get the latest version:
+
+```bash
+cd ~/winn-kia-car-reels && git pull
+```
 
 ## Using it
 
@@ -87,7 +101,7 @@ Each person spends their own Higgsfield credits. Quotes from October 2026, per 1
 
 On the Plus plan ($49/month for 1,000 credits) that is roughly $5 to $6 per 1080p video, or about
 $15 to $18 per car. A redo costs the same as a first take. Photo fetching, captions and branding
-are free. Ask Claude for "720p" to cut the cost by about 40%.
+are free, and so are the logos and music. Ask Claude for "720p" to cut the cost by about 40%.
 
 ## Customizing
 
@@ -95,12 +109,18 @@ Everything editable lives in the skill folder (`~/.claude/skills/winn-kia-car-re
 
 | File | What it controls |
 |---|---|
-| `brand.json` | Wordmark, dealership name and address on the end card |
-| `styles/heartfelt.json`, `styles/sky-drop.json`, `styles/exploded.json` | The video prompt, the captions, and when each caption appears |
+| `brand.json` | Logos, dealership name and address on the end card |
+| `styles/heartfelt.json`, `styles/sky-drop.json`, `styles/exploded.json` | The video prompt, the fallback captions, and when each caption appears |
+| `music/<style>.m4a` | The music bed for each style; replace with any track of 10 seconds or more |
 | `scripts/fetch_listing.py` | Which website the photos come from |
 
 To add a fourth style, copy one of the `styles/*.json` files, rewrite its `prompt`, `captions`
-and `end_card`, and ask Claude for that style by name.
+and `end_card`, add a music bed with the same name, and ask Claude for that style by name. Ask for
+a "draft" first: it costs 30 credits instead of 120.
+
+The logos are not stored in this repository. The skill downloads them from the dealership's own
+websites the first time it runs and keeps them in `assets/`. If that fails it uses a plain text
+wordmark instead.
 
 To use it for a different dealership, change `brand.json` and the `SITE` address at the top of
 `scripts/fetch_listing.py`. The photo fetcher expects the same website platform Winn Kia uses, so
@@ -121,9 +141,9 @@ python3 $S/scripts/fetch_listing.py "<listing-url>" --out ~/Desktop/winn-kia-ree
 python3 $S/scripts/prompt.py sky-drop --vehicle "white 2027 Kia Telluride X-Line" \
   --look "glacial white pearl paint, black grille, black wheels, black roof rails"
 
-# add branding and captions to a generated clip
+# add logos, captions and music to a generated clip (--copy is the per-car wording, optional)
 python3 $S/scripts/brand_video.py --input sky-drop-raw.mp4 --style $S/styles/sky-drop.json \
-  --vehicle "2027 Kia Telluride" --out sky-drop-final.mp4
+  --vehicle "2027 Kia Telluride" --copy sky-drop-copy.json --out sky-drop-final.mp4
 ```
 
 ## What it won't put on screen
@@ -131,7 +151,7 @@ python3 $S/scripts/brand_video.py --input sky-drop-raw.mp4 --style $S/styles/sky
 - **No prices, payments, rebates or "deal" wording** by default. Advertised prices need the
   dealership's own disclosure text.
 - **No spec or feature claims** (range, MPG, towing, warranty) unless you supply the figure.
-- **"Now on the lot"** on the sky-drop end card is only true while that car is in inventory.
+- **"On the lot" / "just landed" lines** are only true while that car is in inventory.
 - The people and scenery are AI-generated, and the exploded view is an illustration, not accurate
   engineering.
 
@@ -147,4 +167,4 @@ Review every video before posting. See `winn-kia-car-reels/SKILL.md` for the ful
 
 ---
 
-Not affiliated with or endorsed by Kia or Higgsfield.
+Not affiliated with or endorsed by Kia or Higgsfield. Logos belong to their owners and are fetched from the dealership's own sites at run time.

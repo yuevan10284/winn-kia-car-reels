@@ -1,5 +1,19 @@
 {
   "wordmark": ["WINN KIA", "OF FREMONT"],
   "name": "Winn Kia of Fremont",
-  "address": "5633 John Muir Dr, Newark, CA 94560"
+  "address": "5633 John Muir Dr, Newark, CA 94560",
+  "logos": {
+    "header": {
+      "file": "winn-auto-group.png",
+      "url": "https://winnautogroup.com/wp-content/uploads/2025/10/winn_text_logo.png",
+      "white": true,
+      "width": 250
+    },
+    "end_card": {
+      "file": "winn-kia-of-fremont.png",
+      "url": "https://service.secureoffersites.com/images/GetLibraryImage?fileNameOrId=309143&Width=0&Height=0",
+      "white": false,
+      "width": 560
+    }
+  }
 }
